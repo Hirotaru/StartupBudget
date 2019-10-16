@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WoerterLernen.TestPage">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Label Text="FirstWord "  HorizontalOptions="Center" FontSize="32" />
+        <Label Text="Transkription" HorizontalOptions="Center" FontSize="26"/>
+        <Label Text="SecondWord" HorizontalOptions="Center" FontSize="32" IsVisible="False" x:Name="Ubersetzung"/>
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="Pruefen" Text="Проверить" HorizontalOptions="Center" FontSize="32" Clicked="Pruefen_Clicked"/>
+        </StackLayout>
+        <StackLayout x:Name="AntwortKnoepfe" Orientation="Horizontal" HorizontalOptions="Center" IsVisible="False">
+            <Button x:Name="Richtig" Text="✓" HorizontalOptions="Center" FontSize="40" Clicked="Richtig_Clicked" BackgroundColor="ForestGreen" TextColor="White"
+                    CornerRadius="10"/>
+            <Button x:Name="Falsch" Text="×" HorizontalOptions="Center" FontSize="45" Clicked="Falsch_Clicked" BackgroundColor="IndianRed" TextColor="White" 
+                    CornerRadius="10"/> 
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
