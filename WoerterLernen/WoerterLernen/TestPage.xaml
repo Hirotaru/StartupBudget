@@ -5,18 +5,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="WoerterLernen.TestPage">
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <Label Text="FirstWord "  HorizontalOptions="Center" FontSize="32" />
-        <Label Text="Transkription" HorizontalOptions="Center" FontSize="26"/>
-        <Label Text="SecondWord" HorizontalOptions="Center" FontSize="32" IsVisible="False" x:Name="Ubersetzung"/>
-        <StackLayout Orientation="Horizontal">
-            <Button x:Name="Pruefen" Text="Проверить" HorizontalOptions="Center" FontSize="32" Clicked="Pruefen_Clicked"/>
+    <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" MinimumHeightRequest="200" Padding="20">
+            <Frame BackgroundColor="#1A7FFFD4" MinimumHeightRequest="200" Padding="0" CornerRadius="20">
+                <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" >
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Pruefen_Clicked"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label x:Name="ErsteWort" Text="FirstWord" HorizontalTextAlignment="Center"  HorizontalOptions="Center" FontSize="32" TextColor="Black" FontAttributes="Bold" LineBreakMode="WordWrap"/>
+                    <Label x:Name="ErsteTranskription" Text="Transkription" HorizontalOptions="Center" FontSize="26" FontAttributes="Italic"/>
+                    <Label x:Name="Ubersetzung" Text="SecondWord" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="32" IsVisible="False" TextColor="Black" LineBreakMode="WordWrap"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout x:Name="AntwortKnoepfe" Orientation="Horizontal" HorizontalOptions="FillAndExpand" IsVisible="False" >
+                <Button x:Name="Richtig" Text="✓" HorizontalOptions="FillAndExpand" FontSize="35" Clicked="Richtig_Clicked" BackgroundColor="ForestGreen" TextColor="White"
+                    CornerRadius="15" Margin="15"/>
+                <Button x:Name="Falsch" Text="×" HorizontalOptions="FillAndExpand" FontSize="45" Clicked="Falsch_Clicked" BackgroundColor="IndianRed" TextColor="White" 
+                    CornerRadius="15" Margin="15"/>
+            </StackLayout>
         </StackLayout>
-        <StackLayout x:Name="AntwortKnoepfe" Orientation="Horizontal" HorizontalOptions="Center" IsVisible="False">
-            <Button x:Name="Richtig" Text="✓" HorizontalOptions="Center" FontSize="40" Clicked="Richtig_Clicked" BackgroundColor="ForestGreen" TextColor="White"
-                    CornerRadius="10"/>
-            <Button x:Name="Falsch" Text="×" HorizontalOptions="Center" FontSize="45" Clicked="Falsch_Clicked" BackgroundColor="IndianRed" TextColor="White" 
-                    CornerRadius="10"/> 
-        </StackLayout>
+        <Label x:Name="Fortschritt" HorizontalOptions="Center" VerticalOptions="End" FontSize="26" TextColor="Black" FontAttributes="Bold" AbsoluteLayout.LayoutBounds=".5,1,.5,1"/>
     </StackLayout>
 </ContentPage>
