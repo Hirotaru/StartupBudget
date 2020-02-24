@@ -4,13 +4,26 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="WoerterLernen.TestPage">
+             xmlns:vm="clr-namespace:WoerterLernen.ViewModels"
+             x:Class="WoerterLernen.TestPage"
+             BackgroundColor="#fffcbd">
+
+    <ContentPage.BindingContext>
+        <vm:TestPageViewModel/>
+    </ContentPage.BindingContext>
+    
     <StackLayout VerticalOptions="FillAndExpand">
         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" MinimumHeightRequest="200" Padding="20">
-            <Frame BackgroundColor="#1A7FFFD4" MinimumHeightRequest="200" Padding="0" CornerRadius="20">
+            <!--<Label Text="{Binding PrevX, StringFormat='PrevX: {0}'}"/>
+            <Label Text="{Binding X, StringFormat='X: {0}'}"/>
+            <Label Text="{Binding Y, StringFormat='Y: {0}'}"/>
+            <Label Text="{Binding Rotation, StringFormat='Rotation: {0}'}"/>
+            <Label Text="{Binding Status, StringFormat='Status: {0}'}"/>-->
+            <Frame x:Name="WordFrame" BackgroundColor="#ffffff" MinimumHeightRequest="200" Padding="0" CornerRadius="20" HasShadow="False">
                 <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" >
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Pruefen_Clicked"/>
+                        <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"/>
                     </StackLayout.GestureRecognizers>
                     <Label x:Name="ErsteWort" Text="FirstWord" HorizontalTextAlignment="Center"  HorizontalOptions="Center" FontSize="32" TextColor="Black" FontAttributes="Bold" LineBreakMode="WordWrap"/>
                     <Label x:Name="ErsteTranskription" Text="Transkription" HorizontalOptions="Center" FontSize="26" FontAttributes="Italic"/>

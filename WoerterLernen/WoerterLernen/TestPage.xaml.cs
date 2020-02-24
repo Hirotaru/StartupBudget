@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WoerterLernen.ViewModels;
 using Xamarin.Forms;
 
 namespace WoerterLernen
@@ -84,6 +85,75 @@ namespace WoerterLernen
         {
             hideAntwortKnoepfe();
             loadNachsteElement();
+        }
+
+        private double prevX = 0;
+
+        private async void PanGestureRecognizer_PanUpdated(object sender, PanUpdatedEventArgs e)
+        {
+            var vm = (this.BindingContext as TestPageViewModel);
+
+            switch (e.StatusType)
+            {
+                case GestureStatus.Canceled:
+                    {
+                        
+                        vm.Status = "Canceled";
+                        break;
+                    }
+
+                case GestureStatus.Completed:
+                    {
+                        if (prevX >= 100)
+                        {
+                            Richtig_Clicked(Richtig, new EventArgs());
+                            //await WordFrame.TranslateTo(1000, 100, 250, Easing.SinInOut).ContinueWith((a) => Task.Run(() => WordFrame.BackgroundColor = Color.FromHex("#ffffff"))).ContinueWith((a) => WordFrame.TranslateTo(0, 0, 0, Easing.SinInOut));
+                        }
+                        else
+                        {
+                            if (prevX <= -100)
+                            {
+                                Falsch_Clicked(Falsch, new EventArgs());
+                                //await WordFrame.TranslateTo(-1000, 100, 250, Easing.SinInOut).ContinueWith((a) => Task.Run(() => WordFrame.BackgroundColor = Color.FromHex("#ffffff"))).ContinueWith((a) => WordFrame.TranslateTo(0, 0, 0, Easing.SinInOut));
+                            }
+                        }
+                        prevX = 0;
+                        WordFrame.BackgroundColor = Color.FromHex("#ffffff");
+                        await WordFrame.RotateTo(0, 250, Easing.SinInOut);
+                        await WordFrame.TranslateTo(0, 0, 0, Easing.SinInOut);
+                        break;
+                    }
+
+                case GestureStatus.Running:
+                case GestureStatus.Started:
+                    {
+                        
+                        WordFrame.TranslationX = e.TotalX;
+                        
+                        prevX = e.TotalX;
+                        if (prevX >= 100)
+                        {
+                            WordFrame.BackgroundColor = Color.FromHex("#bfffbd");
+                            WordFrame.TranslationX = 100;
+                        }
+                        else
+                        {
+                            if (prevX <= -100)
+                            {
+                                WordFrame.BackgroundColor = Color.FromHex("#ffbdbd");
+                                WordFrame.TranslationX = -100;
+                            }
+                            else
+                            {
+                                WordFrame.BackgroundColor = Color.FromHex("#ffffff");
+                            }
+                        }
+                        WordFrame.Rotation = WordFrame.TranslationX / 15;
+                        WordFrame.TranslationY = Math.Abs(WordFrame.TranslationX / 8);
+                        break;
+                    }
+            }
+
         }
     }
 }
