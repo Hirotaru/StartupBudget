@@ -6,38 +6,33 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using StartupBudget.DAL.Repositories;
 using StartupBudget.Domain.Abstractions;
 using StartupBudget.Domain.Entities;
+using StartupBudget.Web.ViewModels;
+using StartupBudget.Web.WorkServices;
 
 namespace StartupBudget.Web.Controllers
 {
     public class DevelopersController : Controller
     {
-        IDeveloperRepository db = DeveloperMockRepository.Current;
+        DeveloperWorkService service = DeveloperWorkService.Current;
 
         // GET: Developers
+        
         public async Task<ActionResult> Index()
         {
-            return View(await db.GetAllDevelopersAsync());
-        }
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Developer, IndexDeveloperViewModel>()
+                .ForMember(c => c.FullName, opt => opt.MapFrom(d => d.FirstName + " " + d.LastName)));
 
-        // GET: Developers/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            var mapper = config.CreateMapper();
 
-            Developer developer = await db.GetDeveloperByIdAsync(id.Value);
+            var devs = await service.GetDevelopers();
 
-            if (developer == null)
-            {
-                return HttpNotFound();
-            }
+            var indexDevs = mapper.Map<IEnumerable<Developer>, IEnumerable<IndexDeveloperViewModel>>(devs);
 
-            return View(developer);
+            return View(indexDevs);
         }
 
         // GET: Developers/Create
@@ -49,80 +44,31 @@ namespace StartupBudget.Web.Controllers
         // POST: Developers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Developer developer)
+        public async Task<ActionResult> Create(CreateDeveloperViewModel developer)
         {
             if (ModelState.IsValid)
             {
-                await db.CreateDeveloperAsync(developer);
-                await db.SaveDeveloperAsync();
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<CreateDeveloperViewModel, Developer>());
+
+                var mapper = config.CreateMapper();
+
+                var dev = mapper.Map<CreateDeveloperViewModel, Developer>(developer);
+
+                await service.SaveDeveloper(dev);
+
                 return RedirectToAction("Index");
             }
 
             return View(developer);
         }
 
-        // GET: Developers/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Developer developer = await db.GetDeveloperByIdAsync(id.Value);
-            if (developer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(developer);
-        }
-
-        // POST: Developers/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Developer developer)
-        {
-            if (ModelState.IsValid)
-            {
-                await db.UpdateDeveloperAsync(developer);
-                await db.SaveDeveloperAsync();
-                return RedirectToAction("Index");
-            }
-            return View(developer);
-        }
-
-        // GET: Developers/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Developer developer = await db.GetDeveloperByIdAsync(id.Value);
-            if (developer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(developer);
-        }
-
-        // POST: Developers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            Developer developer = await db.GetDeveloperByIdAsync(id);
-            await db.DeleteDeveloperAsync(developer);
-            await db.SaveDeveloperAsync();
-            return RedirectToAction("Index");
-        }
+        
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }
