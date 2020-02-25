@@ -42,16 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\MockRepository.cs" />
+    <Compile Include="Repositories\DeveloperMockRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StartupBudget.Abstractions\StartupBudget.Abstractions.csproj">
-      <Project>{28c8d9ad-9af4-42cc-876c-07a48053960a}</Project>
-      <Name>StartupBudget.Abstractions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\StartupBudget.Domain\StartupBudget.Domain.csproj">
       <Project>{433e84f5-acf6-414f-982c-2b7b44592e79}</Project>
       <Name>StartupBudget.Domain</Name>

@@ -1,36 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using StartupBudget.Abstractions;
 using StartupBudget.DAL.Repositories;
-using StartupBudget.Domain.Models;
+using StartupBudget.Domain.Abstractions;
+using StartupBudget.Domain.Entities;
 
 namespace StartupBudget.Web.Controllers
 {
     public class DevelopersController : Controller
     {
-        IRepository<Developer> db = MockRepository.Current;
+        IDeveloperRepository db = DeveloperMockRepository.Current;
 
         // GET: Developers
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.GetAll());
+            return View(await db.GetAllDevelopersAsync());
         }
 
         // GET: Developers/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Developer developer = db.GetById(id.Value);
+            Developer developer = await db.GetDeveloperByIdAsync(id.Value);
 
             if (developer == null)
             {
@@ -49,12 +49,12 @@ namespace StartupBudget.Web.Controllers
         // POST: Developers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Developer developer)
+        public async Task<ActionResult> Create(Developer developer)
         {
             if (ModelState.IsValid)
             {
-                db.Create(developer);
-                db.Save();
+                await db.CreateDeveloperAsync(developer);
+                await db.SaveDeveloperAsync();
                 return RedirectToAction("Index");
             }
 
@@ -62,14 +62,14 @@ namespace StartupBudget.Web.Controllers
         }
 
         // GET: Developers/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Developer developer = db.GetById(id.Value);
+            Developer developer = await db.GetDeveloperByIdAsync(id.Value);
             if (developer == null)
             {
                 return HttpNotFound();
@@ -80,26 +80,26 @@ namespace StartupBudget.Web.Controllers
         // POST: Developers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Developer developer)
+        public async Task<ActionResult> Edit(Developer developer)
         {
             if (ModelState.IsValid)
             {
-                db.Update(developer);
-                db.Save();
+                await db.UpdateDeveloperAsync(developer);
+                await db.SaveDeveloperAsync();
                 return RedirectToAction("Index");
             }
             return View(developer);
         }
 
         // GET: Developers/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Developer developer = db.GetById(id.Value);
+            Developer developer = await db.GetDeveloperByIdAsync(id.Value);
             if (developer == null)
             {
                 return HttpNotFound();
@@ -110,11 +110,11 @@ namespace StartupBudget.Web.Controllers
         // POST: Developers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Developer developer = db.GetById(id);
-            db.Delete(developer);
-            db.Save();
+            Developer developer = await db.GetDeveloperByIdAsync(id);
+            await db.DeleteDeveloperAsync(developer);
+            await db.SaveDeveloperAsync();
             return RedirectToAction("Index");
         }
 
