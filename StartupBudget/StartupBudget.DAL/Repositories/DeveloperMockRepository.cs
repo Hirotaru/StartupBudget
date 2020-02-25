@@ -11,42 +11,17 @@ namespace StartupBudget.DAL.Repositories
     {
         private int nextId = 3;
         private readonly List<Developer> DataSource;
-        static DeveloperMockRepository current;
-        public static DeveloperMockRepository Current
-        {
-            get
-            {
-                if (current == null)
-                {
-                    current = new DeveloperMockRepository();
-                }
-                return current;
-            }
-        }
 
-
-        private DeveloperMockRepository()
+        public DeveloperMockRepository()
         {
             DataSource = new List<Developer>()
             {
-                new Developer {Id = 1, FullName = "Пупкин Василий Петрович", Qualification = "Senior", WeekRate = 2000},
-                new Developer {Id = 2, FullName = "Иваной Иван Иванвич", Qualification = "Middle", WeekRate = 1500}
+                new Developer {Id = 1, FirstName = "Василий", LastName = "Пупкин", Qualification = DeveloperQualification.Senior, WeekRate = 2000},
+                new Developer {Id = 2, FirstName = "Иван", LastName = "Иванов", Qualification = DeveloperQualification.Middle, WeekRate = 1500}
             };
         }
 
-        public async Task<IEnumerable<Developer>> GetAllDevelopersAsync()
-        {
-            await Task.Delay(500); //Database query imitation
-            return DataSource;
-        }
-
-        public async Task<Developer> GetDeveloperByIdAsync(int id)
-        {
-            await Task.Delay(500); //Database query imitation
-            return DataSource.Where(t => t.Id == id).FirstOrDefault();
-        }
-
-        public async Task CreateDeveloperAsync(Developer dev)
+        public async Task SaveDeveloper(Developer dev)
         {
             if (dev == null)
             {
@@ -60,42 +35,10 @@ namespace StartupBudget.DAL.Repositories
             await Task.Delay(500); //Database query imitation
         }
 
-        public async Task UpdateDeveloperAsync(Developer dev)
+        public async Task<IEnumerable<Developer>> GetAllDevelopers()
         {
-            if (dev == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            int index = DataSource.FindIndex(t => t.Id == dev.Id);
-
-            if (index > 0)
-            {
-                DataSource[index] = dev;
-            }
             await Task.Delay(500); //Database query imitation
-        }
-
-        public async Task DeleteDeveloperAsync(Developer dev)
-        {
-            if (dev == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            DataSource.Remove(dev);
-            await Task.Delay(500); //Database query imitation
-        }
-
-        public async Task SaveDeveloperAsync()
-        {
-            Console.WriteLine("Saving data...");
-            await Task.Delay(500); //Database query imitation
-        }
-
-        public void Dispose()
-        {
-            Console.WriteLine("Disposing...");
+            return DataSource;
         }
     }
 }

@@ -3,8 +3,16 @@
     public class Developer
     {
         public int Id { get; set; }
-        public string FullName { get; set; }
-        public int WeekRate { get; set; }
-        public string Qualification { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public decimal WeekRate { get; set; }
+        public DeveloperQualification Qualification { get; set; }
+    }
+
+    public enum DeveloperQualification
+    {
+        Junior,
+        Middle,
+        Senior
     }
 }

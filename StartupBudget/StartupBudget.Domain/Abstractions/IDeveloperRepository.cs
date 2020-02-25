@@ -5,18 +5,10 @@ using System.Threading.Tasks;
 
 namespace StartupBudget.Domain.Abstractions
 {
-    public interface IDeveloperRepository : IDisposable
+    public interface IDeveloperRepository
     {
-        Task<IEnumerable<Developer>> GetAllDevelopersAsync();
+        Task SaveDeveloper(Developer dev);
 
-        Task<Developer> GetDeveloperByIdAsync(int id);
-
-        Task CreateDeveloperAsync(Developer dev);
-
-        Task UpdateDeveloperAsync(Developer dev);
-
-        Task DeleteDeveloperAsync(Developer dev);
-
-        Task SaveDeveloperAsync();
+        Task<IEnumerable<Developer>> GetAllDevelopers();
     }
 }
