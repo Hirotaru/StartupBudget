@@ -30,7 +30,7 @@ namespace StartupBudget.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Developer developer = db.GetById(id);
+            Developer developer = db.GetById(id.Value);
 
             if (developer == null)
             {
@@ -98,7 +98,8 @@ namespace StartupBudget.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Developer developer = db.GetById(id);
+
+            Developer developer = db.GetById(id.Value);
             if (developer == null)
             {
                 return HttpNotFound();

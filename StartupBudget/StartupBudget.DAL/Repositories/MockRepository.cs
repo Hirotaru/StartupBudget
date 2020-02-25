@@ -10,7 +10,7 @@ namespace StartupBudget.DAL.Repositories
 {
     public class MockRepository : IRepository<Developer>
     {
-        
+        private int nextId = 3;
         private readonly List<Developer> DataSource;
         static MockRepository current;
         public static MockRepository Current
@@ -41,6 +41,7 @@ namespace StartupBudget.DAL.Repositories
                 throw new ArgumentNullException();
             }
 
+            item.Id = nextId++;
             DataSource.Add(item);
         }
 
@@ -62,18 +63,6 @@ namespace StartupBudget.DAL.Repositories
         public IEnumerable<Developer> GetAll()
         {
             return DataSource;
-        }
-
-        public Developer GetById(int? id)
-        {
-            if (id.HasValue)
-            {
-                return GetById(id.Value);
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
         }
 
         public Developer GetById(int id)
