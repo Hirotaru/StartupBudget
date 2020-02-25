@@ -10,15 +10,20 @@ namespace StartupBudget.DAL.Repositories
     public class DeveloperMockRepository : IDeveloperRepository
     {
         private int nextId = 3;
-        private readonly List<Developer> DataSource;
+        private static readonly List<Developer> DataSource;
 
-        public DeveloperMockRepository()
+        static DeveloperMockRepository()
         {
             DataSource = new List<Developer>()
             {
                 new Developer {Id = 1, FirstName = "Василий", LastName = "Пупкин", Qualification = DeveloperQualification.Senior, WeekRate = 2000},
                 new Developer {Id = 2, FirstName = "Иван", LastName = "Иванов", Qualification = DeveloperQualification.Middle, WeekRate = 1500}
             };
+        }
+
+        public DeveloperMockRepository()
+        {
+
         }
 
         public async Task SaveDeveloper(Developer dev)

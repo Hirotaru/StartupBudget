@@ -17,22 +17,14 @@ namespace StartupBudget.Web.Controllers
 {
     public class DevelopersController : Controller
     {
-        MockDeveloperWorkService service = MockDeveloperWorkService.Current;
+        DeveloperWorkService service = new DeveloperWorkService(new DeveloperMockRepository());
 
         // GET: Developers
-        
         public async Task<ActionResult> Index()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Developer, IndexDeveloperViewModel>()
-                .ForMember(d => d.FullName, opt => opt.MapFrom(d => d.FirstName + " " + d.LastName)));
+            var response = await service.GetDevelopers();
 
-            var mapper = config.CreateMapper();
-
-            var devs = await service.GetDevelopers();
-
-            var indexDevs = mapper.Map<IEnumerable<Developer>, IEnumerable<IndexDeveloperViewModel>>(devs);
-
-            return View(indexDevs);
+            return View(response);
         }
 
         // GET: Developers/Create
@@ -46,31 +38,9 @@ namespace StartupBudget.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateDeveloperViewModel developer)
         {
-            if (ModelState.IsValid)
-            {
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<CreateDeveloperViewModel, Developer>());
+            await service.CreateDeveloper(developer);
 
-                var mapper = config.CreateMapper();
-
-                var dev = mapper.Map<CreateDeveloperViewModel, Developer>(developer);
-
-                await service.SaveDeveloper(dev);
-
-                return RedirectToAction("Index");
-            }
-
-            return View(developer);
-        }
-
-        
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-
-            }
-            base.Dispose(disposing);
+            return RedirectToAction("Index");
         }
     }
 }
