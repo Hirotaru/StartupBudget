@@ -9,26 +9,26 @@ using System.Web;
 
 namespace StartupBudget.Web.WorkServices
 {
-    public class DeveloperWorkService
+    public class MockDeveloperWorkService
     {
         private readonly IDeveloperRepository repository;
 
-        private static DeveloperWorkService current;
+        private static MockDeveloperWorkService current;
 
-        public static DeveloperWorkService Current
+        public static MockDeveloperWorkService Current
         {
             get 
             { 
                 if (current == null)
                 {
-                    current = new DeveloperWorkService(new DeveloperMockRepository());
+                    current = new MockDeveloperWorkService(new DeveloperMockRepository());
                 }
                 return current;
             }
             set { current = value; }
         }
 
-        public DeveloperWorkService(IDeveloperRepository repository)
+        public MockDeveloperWorkService(IDeveloperRepository repository)
         {
             this.repository = repository;
         }

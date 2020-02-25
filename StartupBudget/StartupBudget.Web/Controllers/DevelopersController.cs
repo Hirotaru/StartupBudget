@@ -17,14 +17,14 @@ namespace StartupBudget.Web.Controllers
 {
     public class DevelopersController : Controller
     {
-        DeveloperWorkService service = DeveloperWorkService.Current;
+        MockDeveloperWorkService service = MockDeveloperWorkService.Current;
 
         // GET: Developers
         
         public async Task<ActionResult> Index()
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Developer, IndexDeveloperViewModel>()
-                .ForMember(c => c.FullName, opt => opt.MapFrom(d => d.FirstName + " " + d.LastName)));
+                .ForMember(d => d.FullName, opt => opt.MapFrom(d => d.FirstName + " " + d.LastName)));
 
             var mapper = config.CreateMapper();
 
@@ -68,7 +68,7 @@ namespace StartupBudget.Web.Controllers
         {
             if (disposing)
             {
-                //db.Dispose();
+
             }
             base.Dispose(disposing);
         }

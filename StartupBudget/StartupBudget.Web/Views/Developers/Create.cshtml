@@ -45,7 +45,6 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Qualification, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            
             @Html.DropDownList("Qualification", EnumHelper.GetSelectList(typeof(DeveloperQualification)), new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Qualification, "", new { @class = "text-danger" })
         </div>
