@@ -10,6 +10,7 @@ namespace StartupBudget.DAL.Repositories
 {
     public class MockRepository : IRepository<Developer>
     {
+        
         private readonly List<Developer> DataSource;
         static MockRepository current;
         public static MockRepository Current
