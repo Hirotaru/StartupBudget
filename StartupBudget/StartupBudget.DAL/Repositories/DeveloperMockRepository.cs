@@ -1,5 +1,5 @@
-﻿using StartupBudget.Domain.Abstractions;
-using StartupBudget.Domain.Entities;
+﻿using StartupBudget.Domain.Developer;
+using StartupBudget.Domain.Developer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +44,33 @@ namespace StartupBudget.DAL.Repositories
         {
             await Task.Delay(500); //Database query imitation
             return DataSource;
+        }
+
+        public async Task DeleteDeveloper(Developer dev)
+        {
+            await Task.Delay(500);
+            DataSource.Remove(dev);
+        }
+
+        public async Task<Developer> GetDeveloperById(int id)
+        {
+            var dev = DataSource.Where(d => d.Id == id).FirstOrDefault();
+            await Task.Delay(500);
+            return dev;
+        }
+
+        public async Task UpdateDeveloper(Developer dev)
+        {
+            int index = DataSource.FindIndex(d => d.Id == dev.Id);
+
+            if (index < 0)
+            {
+                throw new Exception();
+            }
+
+            await Task.Delay(500);
+
+            DataSource[index] = dev;
         }
     }
 }
