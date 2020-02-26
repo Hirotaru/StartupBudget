@@ -9,15 +9,15 @@ namespace StartupBudget.DAL.Repositories
 {
     public class DeveloperMockRepository : IDeveloperRepository
     {
-        private int nextId = 3;
+        private static int nextId = 1;
         private static readonly List<Developer> DataSource;
 
         static DeveloperMockRepository()
         {
             DataSource = new List<Developer>()
             {
-                new Developer {Id = 1, FirstName = "Василий", LastName = "Пупкин", Qualification = DeveloperQualification.Senior, WeekRate = 2000},
-                new Developer {Id = 2, FirstName = "Иван", LastName = "Иванов", Qualification = DeveloperQualification.Middle, WeekRate = 1500}
+                new Developer {Id = nextId++, FirstName = "Василий", LastName = "Пупкин", Qualification = DeveloperQualification.Senior, WeekRate = 2000},
+                new Developer {Id = nextId++, FirstName = "Иван", LastName = "Иванов", Qualification = DeveloperQualification.Middle, WeekRate = 1500},
             };
         }
 
