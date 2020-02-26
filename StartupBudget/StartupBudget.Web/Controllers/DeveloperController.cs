@@ -15,6 +15,7 @@ using StartupBudget.Web.WorkServices;
 
 namespace StartupBudget.Web.Controllers
 {
+    [HandleError]
     public class DeveloperController : Controller
     {
         DeveloperWorkService service = new DeveloperWorkService(new DeveloperMockRepository());
@@ -75,9 +76,9 @@ namespace StartupBudget.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> Edit(EditDeveloperViewModel viewModel)
         {
-
+            await service.UpdateDeveloper(viewModel);
             return RedirectToAction("Developers");
         }
     }
