@@ -9,7 +9,6 @@ using System.Web.Mvc;
 using AutoMapper;
 using StartupBudget.DAL.Repositories;
 using StartupBudget.Domain.Developer;
-using StartupBudget.Domain.Developer;
 using StartupBudget.Web.ViewModels;
 using StartupBudget.Web.WorkServices;
 
