@@ -123,12 +123,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DevelopersController.cs" />
+    <Compile Include="Controllers\DeveloperController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CreateDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\DeleteDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\DetailsDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\EditDeveloperViewModel.cs" />
     <Compile Include="ViewModels\IndexDeveloperViewModel.cs" />
     <Compile Include="WorkServices\DeveloperWorkService.cs" />
   </ItemGroup>
@@ -165,8 +169,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Developers\Index.cshtml" />
-    <Content Include="Views\Developers\Create.cshtml" />
+    <Content Include="Views\Developer\Developers.cshtml" />
+    <Content Include="Views\Developer\Create.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Developer\Delete.cshtml" />
+    <Content Include="Views\Developer\Details.cshtml" />
+    <Content Include="Views\Developer\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

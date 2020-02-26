@@ -6,7 +6,7 @@ using System.Web;
 
 namespace StartupBudget.Web.ViewModels
 {
-    public class IndexDeveloperViewModel
+    public class DeleteDeveloperViewModel
     {
         public int Id { get; set; }
         public string FullName { get; set; }

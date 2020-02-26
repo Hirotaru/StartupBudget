@@ -7,9 +7,7 @@
 
 <h2>Developers</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -35,7 +33,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.Qualification)
         </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, null) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }, null) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, null)
+        </td>
     </tr>
 }
 
 </table>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Developer", null, new { @class = "btn btn-primary btn-large" })
+</p>
