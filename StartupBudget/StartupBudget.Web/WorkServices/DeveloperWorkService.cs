@@ -15,12 +15,7 @@ namespace StartupBudget.Web.WorkServices
 
         public DeveloperWorkService(IDeveloperRepository repository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            this.repository = repository;
+            this.repository = repository ?? throw new ArgumentNullException();
         }
 
         public async Task<IEnumerable<SimpleDeveloperViewModel>> GetDevelopers()

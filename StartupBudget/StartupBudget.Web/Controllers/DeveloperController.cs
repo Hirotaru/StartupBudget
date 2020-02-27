@@ -17,14 +17,13 @@ namespace StartupBudget.Web.Controllers
     
     public class DeveloperController : Controller
     {
-        DeveloperWorkService service = new DeveloperWorkService(new DeveloperMockRepository());
+        private readonly DeveloperWorkService service = new DeveloperWorkService(new DeveloperMockRepository());
 
         // GET: Developers
         public async Task<ActionResult> Developers()
         {
-            var response = await service.GetDevelopers();
-
-            return View(response);
+            var viewModel = await service.GetDevelopers();
+            return View(viewModel);
         }
 
         // GET: Developers/Create
@@ -40,7 +39,6 @@ namespace StartupBudget.Web.Controllers
         public async Task<ActionResult> Create(DetailedDeveloperViewModel developer)
         {
             await service.CreateDeveloper(developer);
-
             return RedirectToAction("Developers");
         }
 
@@ -48,6 +46,13 @@ namespace StartupBudget.Web.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             SimpleDeveloperViewModel viewModel = await service.GetSimpleDeveloper(id);
+
+            if (viewModel == null)
+            {
+                ViewBag.Id = id;
+                return View("DeveloperNotFound");
+            }
+
             return View(viewModel);
         }
 
@@ -63,6 +68,13 @@ namespace StartupBudget.Web.Controllers
         public async Task<ActionResult> Details(int id)
         {
             var viewModel = await service.GetDetailedDeveloper(id);
+
+            if (viewModel == null)
+            {
+                ViewBag.Id = id;
+                return View("DeveloperNotFound");
+            }
+
             return View("Details", viewModel);
         }
 
