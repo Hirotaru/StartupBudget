@@ -73,7 +73,7 @@ namespace StartupBudget.Web.WorkServices
 
             if (model == null)
             {
-                throw new Exception("Model not found");
+                throw new Exception("Developer not found");
             }
 
             await repository.DeleteDeveloper(model);

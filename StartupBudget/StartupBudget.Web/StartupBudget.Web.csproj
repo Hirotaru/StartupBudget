@@ -170,8 +170,8 @@
     <Content Include="Views\Developer\Create.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Developer\Delete.cshtml" />
-    <Content Include="Views\Developer\Details.cshtml" />
     <Content Include="Views\Developer\Edit.cshtml" />
+    <Content Include="Views\Developer\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
