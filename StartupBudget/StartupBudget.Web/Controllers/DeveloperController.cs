@@ -37,7 +37,7 @@ namespace StartupBudget.Web.Controllers
         // POST: Developers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CreateDeveloperViewModel developer)
+        public async Task<ActionResult> Create(DetailedDeveloperViewModel developer)
         {
             await service.CreateDeveloper(developer);
 
@@ -45,37 +45,37 @@ namespace StartupBudget.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int id)
         {
-            DeleteDeveloperViewModel viewModel = await service.GetDeveloperToDelete(id);
+            SimpleDeveloperViewModel viewModel = await service.GetDeveloperToDelete(id);
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(SimpleDeveloperViewModel viewModel)
         {
-            await service.DeleteDeveloper(id);
+            await service.DeleteDeveloper(viewModel.Id);
             return RedirectToAction("Developers");
         }
 
         [HttpGet]
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int id)
         {
-            var viewModel = await service.GetDetailsDeveloper(id);
+            var viewModel = await service.GetDetailedDeveloper(id);
             return View(viewModel);
         }
 
         [HttpGet]
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var viewModel = await service.GetDeveloperToEdit(id);
+            var viewModel = await service.GetDetailedDeveloper(id);
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(EditDeveloperViewModel viewModel)
+        public async Task<ActionResult> Edit(DetailedDeveloperViewModel viewModel)
         {
             await service.UpdateDeveloper(viewModel);
             return RedirectToAction("Developers");

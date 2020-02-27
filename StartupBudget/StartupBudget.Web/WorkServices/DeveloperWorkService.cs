@@ -23,10 +23,10 @@ namespace StartupBudget.Web.WorkServices
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<IndexDeveloperViewModel>> GetDevelopers()
+        public async Task<IEnumerable<SimpleDeveloperViewModel>> GetDevelopers()
         {
             var model = await repository.GetAllDevelopers();
-            var viewModel = model.Select(item => new IndexDeveloperViewModel
+            var viewModel = model.Select(item => new SimpleDeveloperViewModel
             {
                 FullName = item.FirstName + " " + item.LastName,
                 Qualification = item.Qualification,
@@ -37,7 +37,7 @@ namespace StartupBudget.Web.WorkServices
             return viewModel;
         }
 
-        public async Task<DeleteDeveloperViewModel> GetDeveloperToDelete(int? id)
+        public async Task<SimpleDeveloperViewModel> GetDeveloperToDelete(int? id)
         {
             if (id == null)
             {
@@ -51,7 +51,7 @@ namespace StartupBudget.Web.WorkServices
                 throw new Exception();
             }
 
-            var viewModel = new DeleteDeveloperViewModel
+            var viewModel = new SimpleDeveloperViewModel
             {
                 Id = model.Id,
                 FullName = model.FirstName + " " + model.LastName,
@@ -70,7 +70,7 @@ namespace StartupBudget.Web.WorkServices
 
         
 
-        public Task CreateDeveloper(CreateDeveloperViewModel viewModel)
+        public Task CreateDeveloper(DetailedDeveloperViewModel viewModel)
         {
             if (string.IsNullOrWhiteSpace(viewModel.FirstName))
             {
@@ -100,21 +100,21 @@ namespace StartupBudget.Web.WorkServices
             return repository.SaveDeveloper(dev);
         }
 
-        public async Task<DetailsDeveloperViewModel> GetDetailsDeveloper(int? id)
+        public async Task<DetailedDeveloperViewModel> GetDetailedDeveloper(int id)
         {
-            if (id == null)
+            if (id <= 0)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var model = (await repository.GetDeveloperById(id.Value));
+            var model = (await repository.GetDeveloperById(id));
 
             if (model == null)
             {
-                throw new Exception();
+                return null;
             }
 
-            var viewModel = new DetailsDeveloperViewModel
+            var viewModel = new DetailedDeveloperViewModel
             {
                 Id = model.Id,
                 FirstName = model.FirstName,
@@ -126,33 +126,7 @@ namespace StartupBudget.Web.WorkServices
             return viewModel;
         }
 
-        public async Task<EditDeveloperViewModel> GetDeveloperToEdit(int? id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var model = (await repository.GetDeveloperById(id.Value));
-
-            if (model == null)
-            {
-                throw new Exception();
-            }
-
-            var viewModel = new EditDeveloperViewModel
-            {
-                Id = model.Id,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Qualification = model.Qualification,
-                WeekRate = model.WeekRate
-            };
-
-            return viewModel;
-        }
-
-        public Task UpdateDeveloper(EditDeveloperViewModel viewModel)
+        public Task UpdateDeveloper(DetailedDeveloperViewModel viewModel)
         {
             if (viewModel == null)
             {

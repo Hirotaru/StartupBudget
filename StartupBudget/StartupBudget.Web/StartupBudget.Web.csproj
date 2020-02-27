@@ -129,11 +129,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CreateDeveloperViewModel.cs" />
-    <Compile Include="ViewModels\DeleteDeveloperViewModel.cs" />
-    <Compile Include="ViewModels\DetailsDeveloperViewModel.cs" />
-    <Compile Include="ViewModels\EditDeveloperViewModel.cs" />
-    <Compile Include="ViewModels\IndexDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\DetailedDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\SimpleDeveloperViewModel.cs" />
     <Compile Include="WorkServices\DeveloperWorkService.cs" />
   </ItemGroup>
   <ItemGroup>
