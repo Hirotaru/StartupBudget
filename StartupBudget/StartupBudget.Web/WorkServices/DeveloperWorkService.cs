@@ -32,48 +32,6 @@ namespace StartupBudget.Web.WorkServices
             return viewModel;
         }
 
-        public async Task<SimpleDeveloperViewModel> GetSimpleDeveloper(int id)
-        {
-            if (id <= 0)
-            {
-                throw new ArgumentNullException();
-            }
-
-            var model = (await repository.GetDeveloperById(id));
-
-            if (model == null)
-            {
-                return null;
-            }
-
-            var viewModel = new SimpleDeveloperViewModel
-            {
-                Id = model.Id,
-                FullName = model.FirstName + " " + model.LastName,
-                Qualification = model.Qualification,
-                WeekRate = model.WeekRate
-            };
-
-            return viewModel;
-        }
-
-        public async Task DeleteDeveloper(SimpleDeveloperViewModel viewModel)
-        {
-            if (viewModel == null)
-            {
-                throw new ArgumentNullException(nameof(viewModel));
-            }
-
-            var model = await repository.GetDeveloperById(viewModel.Id);
-
-            if (model == null)
-            {
-                throw new Exception("Developer not found");
-            }
-
-            await repository.DeleteDeveloper(model);
-        }
-
         private Developer ProcessDetailedViewModel(DetailedDeveloperViewModel viewModel)
         {
             if (viewModel == null)
@@ -122,7 +80,24 @@ namespace StartupBudget.Web.WorkServices
             return repository.UpdateDeveloper(model);
         }
 
-        public async Task<DetailedDeveloperViewModel> GetDetailedDeveloper(int id)
+        public async Task DeleteDeveloper(SimpleDeveloperViewModel viewModel)
+        {
+            if (viewModel == null)
+            {
+                throw new ArgumentNullException(nameof(viewModel));
+            }
+
+            var model = await repository.GetDeveloperById(viewModel.Id);
+
+            if (model == null)
+            {
+                throw new Exception("Developer not found");
+            }
+
+            await repository.DeleteDeveloper(model);
+        }
+
+        public async Task<DetailedDeveloperViewModel> GetDetailedDeveloperById(int id)
         {
             if (id <= 0)
             {
@@ -148,5 +123,29 @@ namespace StartupBudget.Web.WorkServices
             return viewModel;
         }
 
+        public async Task<SimpleDeveloperViewModel> GetSimpleDeveloperById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var model = await repository.GetDeveloperById(id);
+
+            if (model == null)
+            {
+                return null;
+            }
+
+            var viewModel = new SimpleDeveloperViewModel
+            {
+                Id = model.Id,
+                FullName = model.FirstName + " " + model.LastName,
+                Qualification = model.Qualification,
+                WeekRate = model.WeekRate
+            };
+
+            return viewModel;
+        }
     }
 }

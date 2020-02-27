@@ -45,7 +45,7 @@ namespace StartupBudget.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Delete(int id)
         {
-            SimpleDeveloperViewModel viewModel = await service.GetSimpleDeveloper(id);
+            SimpleDeveloperViewModel viewModel = await service.GetSimpleDeveloperById(id);
 
             if (viewModel == null)
             {
@@ -67,7 +67,7 @@ namespace StartupBudget.Web.Controllers
         [HttpGet, ActionName("Id")]
         public async Task<ActionResult> Details(int id)
         {
-            var viewModel = await service.GetDetailedDeveloper(id);
+            var viewModel = await service.GetDetailedDeveloperById(id);
 
             if (viewModel == null)
             {
@@ -81,7 +81,7 @@ namespace StartupBudget.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int id)
         {
-            var viewModel = await service.GetDetailedDeveloper(id);
+            var viewModel = await service.GetDetailedDeveloperById(id);
 
             if (viewModel == null)
             {
