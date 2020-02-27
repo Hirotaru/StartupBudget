@@ -70,6 +70,13 @@ namespace StartupBudget.Web.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             var viewModel = await service.GetDetailedDeveloper(id);
+
+            if (viewModel == null)
+            {
+                ViewBag.Id = id;
+                return View("DeveloperNotFound");
+            }
+
             return View(viewModel);
         }
 
