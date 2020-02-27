@@ -37,18 +37,18 @@ namespace StartupBudget.Web.WorkServices
             return viewModel;
         }
 
-        public async Task<SimpleDeveloperViewModel> GetDeveloperToDelete(int? id)
+        public async Task<SimpleDeveloperViewModel> GetSimpleDeveloper(int id)
         {
-            if (id == null)
+            if (id <= 0)
             {
                 throw new ArgumentNullException();
             }
 
-            var model = (await repository.GetDeveloperById(id.Value));
+            var model = (await repository.GetDeveloperById(id));
 
             if (model == null)
             {
-                throw new Exception();
+                return null;
             }
 
             var viewModel = new SimpleDeveloperViewModel
@@ -62,71 +62,24 @@ namespace StartupBudget.Web.WorkServices
             return viewModel;
         }
 
-        public async Task DeleteDeveloper(int id)
+        public async Task DeleteDeveloper(SimpleDeveloperViewModel viewModel)
         {
-            var model = await repository.GetDeveloperById(id);
-            await repository.DeleteDeveloper(model);
-        }
-
-        
-
-        public Task CreateDeveloper(DetailedDeveloperViewModel viewModel)
-        {
-            if (string.IsNullOrWhiteSpace(viewModel.FirstName))
+            if (viewModel == null)
             {
-                throw new ArgumentNullException(nameof(viewModel.FirstName));
+                throw new ArgumentNullException(nameof(viewModel));
             }
 
-            if (string.IsNullOrWhiteSpace(viewModel.LastName))
-            {
-                throw new ArgumentNullException(nameof(viewModel.LastName));
-            }
-
-            if (viewModel.WeekRate <= 0)
-            {
-                throw new ArgumentException(nameof(viewModel.WeekRate));
-            }
-
-            var dev = new Developer
-            {
-                FirstName = viewModel.FirstName,
-                LastName = viewModel.LastName,
-                Qualification = viewModel.Qualification,
-                WeekRate = viewModel.WeekRate
-            };
-
-
-
-            return repository.SaveDeveloper(dev);
-        }
-
-        public async Task<DetailedDeveloperViewModel> GetDetailedDeveloper(int id)
-        {
-            if (id <= 0)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            var model = (await repository.GetDeveloperById(id));
+            var model = await repository.GetDeveloperById(viewModel.Id);
 
             if (model == null)
             {
-                return null;
+                throw new Exception("Model not found");
             }
 
-            var viewModel = new DetailedDeveloperViewModel
-            {
-                Id = model.Id,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Qualification = model.Qualification,
-                WeekRate = model.WeekRate
-            };
-
-            return viewModel;
+            await repository.DeleteDeveloper(model);
         }
 
-        public Task UpdateDeveloper(DetailedDeveloperViewModel viewModel)
+        private Developer ProcessDetailedViewModel(DetailedDeveloperViewModel viewModel)
         {
             if (viewModel == null)
             {
@@ -157,7 +110,48 @@ namespace StartupBudget.Web.WorkServices
                 Qualification = viewModel.Qualification
             };
 
+            return model;
+        }
+
+        public Task CreateDeveloper(DetailedDeveloperViewModel viewModel)
+        {
+            Developer model = ProcessDetailedViewModel(viewModel);
+
+            return repository.SaveDeveloper(model);
+        }
+
+        public Task UpdateDeveloper(DetailedDeveloperViewModel viewModel)
+        {
+            Developer model = ProcessDetailedViewModel(viewModel);
+
             return repository.UpdateDeveloper(model);
         }
+
+        public async Task<DetailedDeveloperViewModel> GetDetailedDeveloper(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var model = (await repository.GetDeveloperById(id));
+
+            if (model == null)
+            {
+                return null;
+            }
+
+            var viewModel = new DetailedDeveloperViewModel
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Qualification = model.Qualification,
+                WeekRate = model.WeekRate
+            };
+
+            return viewModel;
+        }
+
     }
 }

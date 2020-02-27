@@ -47,7 +47,7 @@ namespace StartupBudget.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Delete(int id)
         {
-            SimpleDeveloperViewModel viewModel = await service.GetDeveloperToDelete(id);
+            SimpleDeveloperViewModel viewModel = await service.GetSimpleDeveloper(id);
             return View(viewModel);
         }
 
@@ -55,7 +55,7 @@ namespace StartupBudget.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(SimpleDeveloperViewModel viewModel)
         {
-            await service.DeleteDeveloper(viewModel.Id);
+            await service.DeleteDeveloper(viewModel);
             return RedirectToAction("Developers");
         }
 
