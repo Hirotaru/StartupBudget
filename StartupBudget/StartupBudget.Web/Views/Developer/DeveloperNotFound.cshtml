@@ -1,7 +1,8 @@
 ﻿@using StartupBudget.Web.ViewModels
 @model DeveloperNotFoundViewModel
+
     <hgroup>
         <h2>Error.</h2>
-        <h3>Developer with id = model.Id was not found</h3>
+        <h3>Developer with id = @Html.DisplayFor(model => model.Id)  was not found</h3>
     </hgroup>
     @Html.ActionLink("Back to List", "Developers")
