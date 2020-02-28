@@ -1,14 +1,7 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
+﻿@using StartupBudget.Web.ViewModels
+@model DeveloperNotFoundViewModel
     <hgroup>
         <h2>Error.</h2>
-        <h3>Developer with id = @ViewBag.Id was not found</h3>
+        <h3>Developer with id = model.Id was not found</h3>
     </hgroup>
     @Html.ActionLink("Back to List", "Developers")
-</body>
-</html>

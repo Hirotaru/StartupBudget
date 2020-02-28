@@ -71,8 +71,7 @@ namespace StartupBudget.Web.Controllers
 
             if (viewModel == null)
             {
-                ViewBag.Id = id;
-                return View("DeveloperNotFound");
+                return DeveloperNotFound(id);
             }
 
             return View("Details", viewModel);
@@ -85,8 +84,7 @@ namespace StartupBudget.Web.Controllers
 
             if (viewModel == null)
             {
-                ViewBag.Id = id;
-                return View("DeveloperNotFound");
+                return DeveloperNotFound(id);
             }
 
             return View(viewModel);
@@ -98,6 +96,11 @@ namespace StartupBudget.Web.Controllers
         {
             await service.UpdateDeveloper(viewModel);
             return RedirectToAction("Developers");
+        }
+
+        private ActionResult DeveloperNotFound(int id)
+        {
+            return View("DeveloperNotFound", new DeveloperNotFoundViewModel { Id = 1 });
         }
     }
 }

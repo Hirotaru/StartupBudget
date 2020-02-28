@@ -132,6 +132,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DetailedDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\DeveloperNotFoundViewModel.cs" />
     <Compile Include="ViewModels\SimpleDeveloperViewModel.cs" />
     <Compile Include="WorkServices\DeveloperWorkService.cs" />
   </ItemGroup>
