@@ -14,7 +14,6 @@ using StartupBudget.Web.WorkServices;
 
 namespace StartupBudget.Web.Controllers
 {
-    
     public class DeveloperController : Controller
     {
         private readonly DeveloperWorkService service = new DeveloperWorkService(new DeveloperMockRepository());
@@ -64,7 +63,8 @@ namespace StartupBudget.Web.Controllers
             return RedirectToAction("Developers");
         }
 
-        [HttpGet, ActionName("Id")]
+        [HttpGet]
+        [ActionName("Id")]
         public async Task<ActionResult> Details(int id)
         {
             var viewModel = await service.GetDetailedDeveloperById(id);

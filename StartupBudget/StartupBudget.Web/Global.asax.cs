@@ -8,6 +8,7 @@ using System.Web.Routing;
 
 namespace StartupBudget.Web
 {
+#pragma warning disable SA1649
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
