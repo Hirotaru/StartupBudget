@@ -4,14 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{16A10ECE-54B5-47EF-916A-6A44F5D95976}</ProjectGuid>
+    <ProjectGuid>{E76A5849-1DD8-4EC8-8812-4D295C5FDA4E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StartupBudget.DAL</RootNamespace>
-    <AssemblyName>StartupBudget.DAL</AssemblyName>
+    <RootNamespace>StartupBudget.Mocks</RootNamespace>
+    <AssemblyName>StartupBudget.Mocks</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,9 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <Compile Include="Repositories\DeveloperMockRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StartupBudget.Domain\StartupBudget.Domain.csproj">

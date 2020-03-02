@@ -221,6 +221,10 @@
       <Project>{433e84f5-acf6-414f-982c-2b7b44592e79}</Project>
       <Name>StartupBudget.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StartupBudget.Mocks\StartupBudget.Mocks.csproj">
+      <Project>{e76a5849-1dd8-4ec8-8812-4d295c5fda4e}</Project>
+      <Name>StartupBudget.Mocks</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />

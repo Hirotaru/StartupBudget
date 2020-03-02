@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using StartupBudget.DAL.Repositories;
 using StartupBudget.Domain.Developer;
+using StartupBudget.Mocks.Repositories;
 using StartupBudget.Web.ViewModels;
 using StartupBudget.Web.WorkServices;
 
@@ -110,7 +110,7 @@ namespace StartupBudget.Web.Controllers
 
         private ActionResult DeveloperNotFound(int id)
         {
-            return View("DeveloperNotFound", new DeveloperNotFoundViewModel { Id = 1 });
+            return View("DeveloperNotFound", new DeveloperNotFoundViewModel { Id = id });
         }
     }
 }

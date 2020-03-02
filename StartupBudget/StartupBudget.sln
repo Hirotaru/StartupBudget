@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartupBudget.Domain", "Sta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartupBudget.DAL", "StartupBudget.DAL\StartupBudget.DAL.csproj", "{16A10ECE-54B5-47EF-916A-6A44F5D95976}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartupBudget.Mocks", "StartupBudget.Mocks\StartupBudget.Mocks.csproj", "{E76A5849-1DD8-4EC8-8812-4D295C5FDA4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{16A10ECE-54B5-47EF-916A-6A44F5D95976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16A10ECE-54B5-47EF-916A-6A44F5D95976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16A10ECE-54B5-47EF-916A-6A44F5D95976}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E76A5849-1DD8-4EC8-8812-4D295C5FDA4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E76A5849-1DD8-4EC8-8812-4D295C5FDA4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E76A5849-1DD8-4EC8-8812-4D295C5FDA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E76A5849-1DD8-4EC8-8812-4D295C5FDA4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,10 @@
 ﻿using StartupBudget.Domain.Developer;
-using StartupBudget.Domain.Developer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StartupBudget.DAL.Repositories
+namespace StartupBudget.Mocks.Repositories
 {
     public class DeveloperMockRepository : IDeveloperRepository
     {
