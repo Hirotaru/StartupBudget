@@ -18,7 +18,7 @@ namespace StartupBudget.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            IoCConfigurator.ConfigureDependencyInjection();
+            AutofacConfigurator.ConfigureDependencyInjection();
         }
     }
 }

@@ -10,7 +10,7 @@ using StartupBudget.Domain.Developer;
 
 namespace StartupBudget.Web
 {
-    public static class IoCConfigurator
+    public static class AutofacConfigurator
     {
         public static void ConfigureDependencyInjection()
         {
