@@ -1,5 +1,4 @@
-﻿using StartupBudget.DAL;
-using StartupBudget.Domain.Developer;
+﻿using StartupBudget.Domain.Developer;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
