@@ -1,6 +1,7 @@
 ﻿using StartupBudget.Domain.Developer;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,27 +17,55 @@ namespace StartupBudget.DAL.Repositories
         }
         public Task DeleteDeveloper(Developer dev)
         {
-            throw new NotImplementedException();
+            if (dev == null)
+            {
+                throw new ArgumentNullException(nameof(dev));
+            }
+
+            context.Developers.Remove(dev);
+
+            return context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Developer>> GetAllDevelopers()
+        public async Task<IEnumerable<Developer>> GetAllDevelopers()
         {
-            throw new NotImplementedException();
+            return await context.Developers.ToListAsync();
         }
 
         public Task<Developer> GetDeveloperById(int id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+            {
+                throw new ArgumentException(nameof(id));
+            }
+
+            return context.Developers.Where(d => d.Id == id).FirstOrDefaultAsync();
         }
 
         public Task SaveDeveloper(Developer dev)
         {
-            throw new NotImplementedException();
+            if (dev == null)
+            {
+                throw new ArgumentNullException(nameof(dev));
+            }
+
+            context.Developers.Add(dev);
+
+            return context.SaveChangesAsync();
         }
 
-        public Task UpdateDeveloper(Developer dev)
+        public async Task UpdateDeveloper(Developer dev)
         {
-            throw new NotImplementedException();
+            if (dev == null)
+            {
+                throw new ArgumentNullException(nameof(dev));
+            }
+
+            var devToChange = await context.Developers.Where(d => d.Id == dev.Id).SingleAsync();
+
+            devToChange = dev;
+
+            await context.SaveChangesAsync();
         }
     }
 }
