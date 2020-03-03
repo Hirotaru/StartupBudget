@@ -61,7 +61,12 @@ namespace StartupBudget.DAL.Repositories
                 throw new ArgumentNullException(nameof(dev));
             }
 
-            var devToChange = await context.Developers.Where(d => d.Id == dev.Id).SingleAsync();
+            var devToChange = await context.Developers.Where(d => d.Id == dev.Id).FirstOrDefaultAsync();
+
+            if (devToChange == null)
+            {
+                throw new Exception();
+            }
 
             context.Entry(devToChange).CurrentValues.SetValues(dev);
 
