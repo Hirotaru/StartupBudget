@@ -1,9 +1,9 @@
-﻿using StartupBudget.Domain.Developer;
+﻿using StartupBudget.DAL;
+using StartupBudget.Domain.Developer;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StartupBudget.DAL.Repositories
@@ -14,6 +14,7 @@ namespace StartupBudget.DAL.Repositories
         public DeveloperRepository(StartupBudgetContext context)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
+            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance; //Без этого не работает
         }
         public Task DeleteDeveloper(Developer dev)
         {
@@ -63,7 +64,7 @@ namespace StartupBudget.DAL.Repositories
 
             var devToChange = await context.Developers.Where(d => d.Id == dev.Id).SingleAsync();
 
-            devToChange = dev;
+            context.Entry(devToChange).CurrentValues.SetValues(dev);
 
             await context.SaveChangesAsync();
         }
