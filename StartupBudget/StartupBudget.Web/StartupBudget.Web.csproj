@@ -149,6 +149,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\AutofacConfigurator.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Autofac\WebModule.cs" />
+    <Compile Include="AutoMapper\DeveloperProfile.cs" />
     <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
