@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data.Entity.Migrations;
 
 namespace StartupBudget.DAL.Repositories
 {
@@ -60,14 +61,7 @@ namespace StartupBudget.DAL.Repositories
                 throw new ArgumentNullException(nameof(dev));
             }
 
-            var devToChange = await context.Developers.Where(d => d.Id == dev.Id).FirstOrDefaultAsync();
-
-            if (devToChange == null)
-            {
-                throw new Exception();
-            }
-
-            context.Entry(devToChange).CurrentValues.SetValues(dev);
+            context.Developers.AddOrUpdate(dev);
 
             await context.SaveChangesAsync();
         }

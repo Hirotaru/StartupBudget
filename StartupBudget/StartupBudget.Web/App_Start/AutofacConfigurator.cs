@@ -15,8 +15,7 @@ namespace StartupBudget.Web
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            // builder.RegisterType<DeveloperMockRepository>().As<IDeveloperRepository>();
-            builder.RegisterType<StartupBudgetContext>().AsSelf();
+            builder.RegisterType<StartupBudgetContext>().AsSelf().SingleInstance();
             builder.RegisterType<DeveloperRepository>().As<IDeveloperRepository>();
 
             IContainer container = builder.Build();
