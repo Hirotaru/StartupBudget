@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
-using StartupBudget.DAL.Util;
+using StartupBudget.DAL.Autofac;
 
 namespace StartupBudget.Web
 {
@@ -13,7 +13,7 @@ namespace StartupBudget.Web
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            builder.RegisterModule(new DALAutofacModule());
+            builder.RegisterModule(new DALModule());
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

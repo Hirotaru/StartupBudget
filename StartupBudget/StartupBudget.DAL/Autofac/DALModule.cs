@@ -3,9 +3,9 @@ using StartupBudget.DAL.EF;
 using StartupBudget.DAL.Repositories;
 using StartupBudget.Domain.Developer;
 
-namespace StartupBudget.DAL.Util
+namespace StartupBudget.DAL.Autofac
 {
-    public class DALAutofacModule : Module
+    public class DALModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

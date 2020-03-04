@@ -35,11 +35,6 @@ namespace StartupBudget.DAL.Repositories
 
         public Task<Developer> GetDeveloperById(int id)
         {
-            if (id < 1)
-            {
-                throw new ArgumentException(nameof(id));
-            }
-
             return context.Developers.Where(d => d.Id == id).FirstOrDefaultAsync();
         }
 
