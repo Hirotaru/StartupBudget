@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace StartupBudget.DAL
+namespace StartupBudget.DAL.EF
 {
     public class StartupBudgetInitializer : DropCreateDatabaseIfModelChanges<StartupBudgetContext>
     {

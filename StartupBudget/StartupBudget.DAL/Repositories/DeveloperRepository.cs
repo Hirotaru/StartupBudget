@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.Entity.Migrations;
+using StartupBudget.DAL.EF;
 
 namespace StartupBudget.DAL.Repositories
 {

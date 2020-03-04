@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using StartupBudget.Domain.Developer;
 
-namespace StartupBudget.DAL
+namespace StartupBudget.DAL.EF
 {
     public class StartupBudgetContext : DbContext
     {
