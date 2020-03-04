@@ -15,8 +15,8 @@ namespace StartupBudget.DAL.EF
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Developer>().HasKey(d => d.Id);
-            modelBuilder.Entity<Developer>().Property(d => d.FirstName).IsRequired();
-            modelBuilder.Entity<Developer>().Property(d => d.LastName).IsRequired();
+            modelBuilder.Entity<Developer>().Property(d => d.FirstName).IsRequired().HasMaxLength(255);
+            modelBuilder.Entity<Developer>().Property(d => d.LastName).IsRequired().HasMaxLength(255);
 
             base.OnModelCreating(modelBuilder);
         }
