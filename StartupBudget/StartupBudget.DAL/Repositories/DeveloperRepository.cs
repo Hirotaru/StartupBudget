@@ -13,7 +13,6 @@ namespace StartupBudget.DAL.Repositories
         public DeveloperRepository(StartupBudgetContext context)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
-            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance; //Без этого не работает
         }
         public Task DeleteDeveloper(Developer dev)
         {
@@ -27,9 +26,9 @@ namespace StartupBudget.DAL.Repositories
             return context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Developer>> GetAllDevelopers()
+        public Task<List<Developer>> GetAllDevelopers()
         {
-            return await context.Developers.ToListAsync();
+            return context.Developers.ToListAsync();
         }
 
         public Task<Developer> GetDeveloperById(int id)

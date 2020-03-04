@@ -9,7 +9,7 @@ namespace StartupBudget.Domain.Developer
     {
         Task SaveDeveloper(Developer dev);
 
-        Task<IEnumerable<Developer>> GetAllDevelopers();
+        Task<List<Developer>> GetAllDevelopers();
 
         Task DeleteDeveloper(Developer dev);
 

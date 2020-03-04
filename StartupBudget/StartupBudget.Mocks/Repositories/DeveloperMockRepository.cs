@@ -39,7 +39,7 @@ namespace StartupBudget.Mocks.Repositories
             await Task.Delay(500); //Database query imitation
         }
 
-        public async Task<IEnumerable<Developer>> GetAllDevelopers()
+        public async Task<List<Developer>> GetAllDevelopers()
         {
             await Task.Delay(500); //Database query imitation
             return DataSource;
