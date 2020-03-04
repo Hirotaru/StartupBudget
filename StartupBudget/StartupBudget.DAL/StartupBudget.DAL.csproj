@@ -68,6 +68,10 @@
     <Compile Include="Migrations\202003031139436_InitialCreate.designer.cs">
       <DependentUpon>202003031139436_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003040824474_ChangedNameRequirements.cs" />
+    <Compile Include="Migrations\202003040824474_ChangedNameRequirements.designer.cs">
+      <DependentUpon>202003040824474_ChangedNameRequirements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DeveloperRepository.cs" />
@@ -91,6 +95,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003031139436_InitialCreate.resx">
       <DependentUpon>202003031139436_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003040824474_ChangedNameRequirements.resx">
+      <DependentUpon>202003040824474_ChangedNameRequirements.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
