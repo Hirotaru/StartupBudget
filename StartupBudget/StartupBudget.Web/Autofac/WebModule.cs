@@ -21,7 +21,7 @@ namespace StartupBudget.Web.Autofac
 
             var mapper = mapperConfiguration.CreateMapper();
 
-            builder.RegisterInstance(mapper).As<IMapper>();
+            builder.RegisterInstance(mapper).As<IMapper>().SingleInstance();
         }
     }
 }

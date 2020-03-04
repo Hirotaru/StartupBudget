@@ -18,14 +18,9 @@ namespace StartupBudget.Web.Controllers
     {
         private readonly DeveloperWorkService service; // = new DeveloperWorkService(new DeveloperMockRepository());
 
-        public DeveloperController(IDeveloperRepository repository)
+        public DeveloperController(IDeveloperRepository repository, IMapper mapper)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            service = new DeveloperWorkService(repository);
+            service = new DeveloperWorkService(repository, mapper);
         }
 
         // GET: Developers

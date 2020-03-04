@@ -13,9 +13,8 @@ namespace StartupBudget.Web.Automapper
         public DeveloperProfile()
         {
             CreateMap<Developer, SimpleDeveloperViewModel>().ForMember(vm => vm.FullName, opt => opt.MapFrom(m => m.FirstName + " " + m.LastName));
-            CreateMap<Developer, DetailedDeveloperViewModel>();
+            CreateMap<Developer, DetailedDeveloperViewModel>().ReverseMap();
             CreateMap<Developer, DeveloperNotFoundViewModel>();
-            CreateMap<List<Developer>, List<SimpleDeveloperViewModel>>();
         }
     }
 }

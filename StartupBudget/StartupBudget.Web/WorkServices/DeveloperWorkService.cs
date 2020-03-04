@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using StartupBudget.Domain.Developer;
 using StartupBudget.Web.ViewModels;
 
@@ -10,22 +11,18 @@ namespace StartupBudget.Web.WorkServices
     public class DeveloperWorkService
     {
         private readonly IDeveloperRepository repository;
+        private readonly IMapper mapper;
 
-        public DeveloperWorkService(IDeveloperRepository repository)
+        public DeveloperWorkService(IDeveloperRepository repository, IMapper mapper)
         {
-            this.repository = repository ?? throw new ArgumentNullException();
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<IEnumerable<SimpleDeveloperViewModel>> GetDevelopers()
         {
             var model = await repository.GetAllDevelopers();
-            var viewModel = model.Select(item => new SimpleDeveloperViewModel
-            {
-                FullName = item.FirstName + " " + item.LastName,
-                Qualification = item.Qualification,
-                WeekRate = item.WeekRate,
-                Id = item.Id,
-            });
+            var viewModel = mapper.Map<List<SimpleDeveloperViewModel>>(model);
 
             return viewModel;
         }
@@ -75,14 +72,7 @@ namespace StartupBudget.Web.WorkServices
                 return null;
             }
 
-            var viewModel = new DetailedDeveloperViewModel
-            {
-                Id = model.Id,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Qualification = model.Qualification,
-                WeekRate = model.WeekRate,
-            };
+            var viewModel = mapper.Map<DetailedDeveloperViewModel>(model);
 
             return viewModel;
         }
@@ -101,13 +91,7 @@ namespace StartupBudget.Web.WorkServices
                 return null;
             }
 
-            var viewModel = new SimpleDeveloperViewModel
-            {
-                Id = model.Id,
-                FullName = model.FirstName + " " + model.LastName,
-                Qualification = model.Qualification,
-                WeekRate = model.WeekRate,
-            };
+            var viewModel = mapper.Map<SimpleDeveloperViewModel>(model);
 
             return viewModel;
         }
@@ -134,14 +118,7 @@ namespace StartupBudget.Web.WorkServices
                 throw new ArgumentException(nameof(viewModel.WeekRate));
             }
 
-            var model = new Developer
-            {
-                Id = viewModel.Id,
-                FirstName = viewModel.FirstName,
-                LastName = viewModel.LastName,
-                WeekRate = viewModel.WeekRate,
-                Qualification = viewModel.Qualification,
-            };
+            var model = mapper.Map<Developer>(viewModel);
 
             return model;
         }
