@@ -86,6 +86,7 @@
     <Compile Include="EF\StartupBudgetContext.cs" />
     <Compile Include="EF\StartupBudgetInitializer.cs" />
     <Compile Include="Autofac\DALModule.cs" />
+    <Compile Include="Repositories\ProjectRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

@@ -50,7 +50,7 @@ namespace StartupBudget.DAL.Repositories
             return context.SaveChangesAsync();
         }
 
-        public async Task UpdateDeveloper(Developer dev)
+        public Task UpdateDeveloper(Developer dev)
         {
             if (dev == null)
             {
@@ -59,7 +59,7 @@ namespace StartupBudget.DAL.Repositories
 
             context.Developers.AddOrUpdate(dev);
 
-            await context.SaveChangesAsync();
+            return context.SaveChangesAsync();
         }
     }
 }
