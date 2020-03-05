@@ -45,6 +45,7 @@
     <Compile Include="Developer\IDeveloperRepository.cs" />
     <Compile Include="Developer\Developer.cs" />
     <Compile Include="Developer\DeveloperQualification.cs" />
+    <Compile Include="Project\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
