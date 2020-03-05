@@ -153,6 +153,7 @@
     <Compile Include="AutoMapper\DeveloperProfile.cs" />
     <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\AutofacExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

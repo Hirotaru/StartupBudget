@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Autofac;
+using Autofac.Integration.Mvc;
 using AutoMapper;
+using StartupBudget.DAL.Autofac;
 using StartupBudget.Web.Automapper;
+using StartupBudget.Web.Extensions;
 
 namespace StartupBudget.Web.Autofac
 {
@@ -14,14 +17,11 @@ namespace StartupBudget.Web.Autofac
         {
             base.Load(builder);
 
-            var mapperConfiguration = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new DeveloperProfile());
-            });
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            var mapper = mapperConfiguration.CreateMapper();
+            builder.RegisterModule(new DALModule());
 
-            builder.RegisterInstance(mapper).As<IMapper>().SingleInstance();
+            builder.UseAutoMapper();
         }
     }
 }
