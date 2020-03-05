@@ -16,7 +16,7 @@ namespace StartupBudget.Web.Controllers
 {
     public class DeveloperController : Controller
     {
-        private readonly DeveloperWorkService service; // = new DeveloperWorkService(new DeveloperMockRepository());
+        private readonly DeveloperWorkService service;
 
         public DeveloperController(IDeveloperRepository repository, IMapper mapper)
         {

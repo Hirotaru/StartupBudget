@@ -2,6 +2,7 @@
 using StartupBudget.DAL.EF;
 using StartupBudget.DAL.Repositories;
 using StartupBudget.Domain.Developer;
+using StartupBudget.Domain.Project;
 
 namespace StartupBudget.DAL.Autofac
 {
@@ -13,6 +14,7 @@ namespace StartupBudget.DAL.Autofac
 
             builder.RegisterType<StartupBudgetContext>().AsSelf().SingleInstance();
             builder.RegisterType<DeveloperRepository>().As<IDeveloperRepository>();
+            builder.RegisterType<ProjectRepository>().As<IProjectRepository>();
         }
     }
 }
