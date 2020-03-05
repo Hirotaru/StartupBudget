@@ -1,4 +1,5 @@
 ﻿using StartupBudget.Domain.Developer;
+using StartupBudget.Domain.Project;
 using System.Collections.Generic;
 using System.Data.Entity;
 
@@ -17,6 +18,16 @@ namespace StartupBudget.DAL.EF
             foreach (var item in devs)
             {
                 context.Developers.Add(item);
+            }
+
+            var proj = new List<Project>
+            {
+                new Project {Name = "Test Project 1", From = new System.DateTime(2020, 2, 18), To = new System.DateTime(2020, 5, 18)}
+            };
+
+            foreach (var item in proj)
+            {
+                context.Projects.Add(item);
             }
 
             context.SaveChanges();
