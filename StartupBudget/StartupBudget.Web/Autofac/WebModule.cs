@@ -15,8 +15,6 @@ namespace StartupBudget.Web.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
-
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             builder.RegisterModule(new DALModule());

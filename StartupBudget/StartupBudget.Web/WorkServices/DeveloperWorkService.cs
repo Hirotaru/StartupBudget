@@ -22,9 +22,7 @@ namespace StartupBudget.Web.WorkServices
         public async Task<IEnumerable<SimpleDeveloperViewModel>> GetDevelopers()
         {
             var model = await repository.GetAllDevelopers();
-            var viewModel = mapper.Map<List<SimpleDeveloperViewModel>>(model);
-
-            return viewModel;
+            return mapper.Map<List<SimpleDeveloperViewModel>>(model);
         }
 
         public Task CreateDeveloper(DetailedDeveloperViewModel viewModel)
@@ -72,9 +70,7 @@ namespace StartupBudget.Web.WorkServices
                 return null;
             }
 
-            var viewModel = mapper.Map<DetailedDeveloperViewModel>(model);
-
-            return viewModel;
+            return mapper.Map<DetailedDeveloperViewModel>(model);
         }
 
         public async Task<SimpleDeveloperViewModel> GetSimpleDeveloperById(int id)
@@ -91,9 +87,7 @@ namespace StartupBudget.Web.WorkServices
                 return null;
             }
 
-            var viewModel = mapper.Map<SimpleDeveloperViewModel>(model);
-
-            return viewModel;
+            return mapper.Map<SimpleDeveloperViewModel>(model);
         }
 
         private Developer ProcessDetailedViewModel(DetailedDeveloperViewModel viewModel)
@@ -118,9 +112,7 @@ namespace StartupBudget.Web.WorkServices
                 throw new ArgumentException(nameof(viewModel.WeekRate));
             }
 
-            var model = mapper.Map<Developer>(viewModel);
-
-            return model;
+            return mapper.Map<Developer>(viewModel);
         }
     }
 }
