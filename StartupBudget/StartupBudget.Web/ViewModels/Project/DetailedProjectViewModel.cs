@@ -14,6 +14,5 @@ namespace StartupBudget.Web.ViewModels.Project
         public DateTime From { get; set; }
 
         public DateTime To { get; set; }
-
     }
 }

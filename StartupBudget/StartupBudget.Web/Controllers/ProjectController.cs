@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -15,13 +16,13 @@ namespace StartupBudget.Web.Controllers
 
         public ProjectController(IProjectRepository repository, IMapper mapper)
         {
-            var a = 5;
+            service = new ProjectWorkService(repository, mapper);
         }
 
         [HttpGet]
-        public ActionResult Projects()
+        public async Task<ActionResult> Projects()
         {
-            return View();
+            return View(await service.GetAllProjects());
         }
     }
 }
