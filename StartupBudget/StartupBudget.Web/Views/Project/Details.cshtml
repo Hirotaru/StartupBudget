@@ -8,32 +8,36 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <th>
+                @Html.DisplayNameFor(model => model.From)
+            </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.From)
-        </dt>
+            <th>
+                @Html.DisplayNameFor(model => model.Till)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.From)
-        </dd>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Till)
-        </dt>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Till)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.From)
+            </td>
 
-    </dl>
+            <td>
+                @Html.DisplayFor(model => model.Till)
+            </td>
+        </tr>
+</table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
