@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace StartupBudget.DAL.EF
 {
-    public class StartupBudgetInitializer : DropCreateDatabaseAlways<StartupBudgetContext>
+    public class StartupBudgetInitializer : DropCreateDatabaseIfModelChanges<StartupBudgetContext>
     {
         protected override void Seed(StartupBudgetContext context)
         { 
