@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using StartupBudget.Domain.Project;
+using StartupBudget.Web.ModelBinders;
 using StartupBudget.Web.ViewModels.Project;
 using StartupBudget.Web.WorkServices;
 
@@ -55,7 +56,7 @@ namespace StartupBudget.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(DetailedProjectViewModel project)
+        public async Task<ActionResult> Create([ModelBinder(typeof(DateCustomBinder))] DetailedProjectViewModel project)
         {
             await service.CreateProject(project);
             return RedirectToAction("Projects");
@@ -90,7 +91,7 @@ namespace StartupBudget.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(DetailedProjectViewModel viewModel)
+        public async Task<ActionResult> Edit([ModelBinder(typeof(DateCustomBinder))] DetailedProjectViewModel viewModel)
         {
             await service.UpdateProject(viewModel);
             return RedirectToAction("Projects");

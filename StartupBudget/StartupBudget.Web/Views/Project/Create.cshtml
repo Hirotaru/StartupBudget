@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Create Project";
 }
+<link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
 
 <h2>Create Project</h2>
 
@@ -24,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.From, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "form-control", @id = "From", autocomplete = "off"} })
                 @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -32,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Till, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Till, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Till, new { htmlAttributes = new { @class = "form-control", @id = "Till", autocomplete = "off"} })
                 @Html.ValidationMessageFor(model => model.Till, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,6 +47,18 @@
         </div>
     </div>
 }
+
+<script>
+    $(function () {
+        $.validator.methods.date = function (value, element) {
+            return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
+        }
+    });
+</script>
+
+<script>
+    $('#From , #Till').datepicker({ dateFormat: 'dd/mm/yy' });
+</script>
 
 <div>
     @Html.ActionLink("Back to Projects", "Projects")
