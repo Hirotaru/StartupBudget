@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using StartupBudget.Domain.Developer;
-using StartupBudget.Web.ViewModels;
+using StartupBudget.Web.ViewModels.Developer;
 
 namespace StartupBudget.Web.Automapper
 {

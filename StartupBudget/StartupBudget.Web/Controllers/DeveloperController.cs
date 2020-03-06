@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using StartupBudget.Domain.Developer;
 using StartupBudget.Mocks.Repositories;
-using StartupBudget.Web.ViewModels;
+using StartupBudget.Web.ViewModels.Developer;
 using StartupBudget.Web.WorkServices;
 
 namespace StartupBudget.Web.Controllers

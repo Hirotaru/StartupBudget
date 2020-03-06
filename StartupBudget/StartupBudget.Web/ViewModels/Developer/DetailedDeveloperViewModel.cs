@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using StartupBudget.Domain.Developer;
 
-namespace StartupBudget.Web.ViewModels
+namespace StartupBudget.Web.ViewModels.Developer
 {
     public class DetailedDeveloperViewModel
     {

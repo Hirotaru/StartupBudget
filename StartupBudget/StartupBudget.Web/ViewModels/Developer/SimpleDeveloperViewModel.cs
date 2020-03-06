@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using StartupBudget.Domain.Developer;
 
-namespace StartupBudget.Web.ViewModels
+namespace StartupBudget.Web.ViewModels.Developer
 {
     public class SimpleDeveloperViewModel
     {

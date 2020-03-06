@@ -151,6 +151,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Autofac\WebModule.cs" />
     <Compile Include="Automapper\DeveloperProfile.cs" />
+    <Compile Include="Automapper\ProjectProfile.cs" />
     <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -159,9 +160,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\DetailedDeveloperViewModel.cs" />
-    <Compile Include="ViewModels\DeveloperNotFoundViewModel.cs" />
-    <Compile Include="ViewModels\SimpleDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\Developer\DetailedDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\Developer\DeveloperNotFoundViewModel.cs" />
+    <Compile Include="ViewModels\Developer\SimpleDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\Project\DetailedProjectViewModel.cs" />
+    <Compile Include="ViewModels\Project\SimpleProjectViewModel.cs" />
     <Compile Include="WorkServices\DeveloperWorkService.cs" />
     <Compile Include="WorkServices\ProjectWorkService.cs" />
   </ItemGroup>

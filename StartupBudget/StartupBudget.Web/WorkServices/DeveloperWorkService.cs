@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using StartupBudget.Domain.Developer;
-using StartupBudget.Web.ViewModels;
+using StartupBudget.Web.ViewModels.Developer;
 
 namespace StartupBudget.Web.WorkServices
 {
@@ -19,7 +19,7 @@ namespace StartupBudget.Web.WorkServices
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<IEnumerable<SimpleDeveloperViewModel>> GetDevelopers()
+        public async Task<List<SimpleDeveloperViewModel>> GetDevelopers()
         {
             var model = await repository.GetAllDevelopers();
             return mapper.Map<List<SimpleDeveloperViewModel>>(model);
