@@ -49,12 +49,11 @@ namespace StartupBudget.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Delete(int id)
         {
-            SimpleDeveloperViewModel viewModel = await service.GetSimpleDeveloperById(id);
+            var viewModel = await service.GetSimpleDeveloperById(id);
 
             if (viewModel == null)
             {
-                ViewBag.Id = id;
-                return View("DeveloperNotFound");
+                return DeveloperNotFound(id);
             }
 
             return View(viewModel);

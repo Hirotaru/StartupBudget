@@ -108,14 +108,14 @@ namespace StartupBudget.Web.WorkServices
                 throw new ArgumentNullException(nameof(viewModel.From));
             }
 
-            if (viewModel.To == null)
+            if (viewModel.Till == null)
             {
-                throw new ArgumentNullException(nameof(viewModel.To));
+                throw new ArgumentNullException(nameof(viewModel.Till));
             }
 
-            if (viewModel.From >= viewModel.To)
+            if (viewModel.From >= viewModel.Till)
             {
-                throw new ArgumentException(nameof(viewModel.From) + " cannot be later than " + nameof(viewModel.To));
+                throw new ArgumentException(nameof(viewModel.From) + " cannot be later than " + nameof(viewModel.Till));
             }
 
             return mapper.Map<Project>(viewModel);

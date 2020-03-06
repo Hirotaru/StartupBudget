@@ -164,6 +164,7 @@
     <Compile Include="ViewModels\Developer\DeveloperNotFoundViewModel.cs" />
     <Compile Include="ViewModels\Developer\SimpleDeveloperViewModel.cs" />
     <Compile Include="ViewModels\Project\DetailedProjectViewModel.cs" />
+    <Compile Include="ViewModels\Project\ProjectNotFoundViewModel.cs" />
     <Compile Include="ViewModels\Project\SimpleProjectViewModel.cs" />
     <Compile Include="WorkServices\DeveloperWorkService.cs" />
     <Compile Include="WorkServices\ProjectWorkService.cs" />
@@ -210,6 +211,11 @@
     <Content Include="Views\Developer\DeveloperNotFound.cshtml" />
     <Content Include="StartupBudget.Web.ruleset" />
     <Content Include="Views\Project\Projects.cshtml" />
+    <Content Include="Views\Project\Details.cshtml" />
+    <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Project\ProjectNotFound.cshtml" />
+    <Content Include="Views\Project\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using StartupBudget.Domain.Project;
+using StartupBudget.Web.ViewModels.Project;
 using StartupBudget.Web.WorkServices;
 
 namespace StartupBudget.Web.Controllers
@@ -23,6 +24,81 @@ namespace StartupBudget.Web.Controllers
         public async Task<ActionResult> Projects()
         {
             return View(await service.GetAllProjects());
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var viewModel = await service.GetSimpleProjectById(id);
+
+            if (viewModel == null)
+            {
+                return ProjectNotFound(id);
+            }
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Delete(SimpleProjectViewModel viewModel)
+        {
+            await service.DeleteProject(viewModel);
+            return RedirectToAction("Projects");
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(DetailedProjectViewModel project)
+        {
+            await service.CreateProject(project);
+            return RedirectToAction("Projects");
+        }
+
+        [HttpGet]
+        [ActionName("Id")]
+        public async Task<ActionResult> Details(int id)
+        {
+            var viewModel = await service.GetDetailedProjectById(id);
+
+            if (viewModel == null)
+            {
+                return ProjectNotFound(id);
+            }
+
+            return View("Details", viewModel);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Edit(int id)
+        {
+            var viewModel = await service.GetDetailedProjectById(id);
+
+            if (viewModel == null)
+            {
+                return ProjectNotFound(id);
+            }
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(DetailedProjectViewModel viewModel)
+        {
+            await service.UpdateProject(viewModel);
+            return RedirectToAction("Projects");
+        }
+
+        private ActionResult ProjectNotFound(int id)
+        {
+            return View("ProjectNotFound", new ProjectNotFoundViewModel { Id = id });
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace StartupBudget.DAL.EF
 {
-    public class StartupBudgetInitializer : DropCreateDatabaseIfModelChanges<StartupBudgetContext>
+    public class StartupBudgetInitializer : DropCreateDatabaseAlways<StartupBudgetContext>
     {
         protected override void Seed(StartupBudgetContext context)
         { 
@@ -22,7 +22,7 @@ namespace StartupBudget.DAL.EF
 
             var proj = new List<Project>
             {
-                new Project {Name = "Test Project 1", From = new System.DateTime(2020, 2, 18), To = new System.DateTime(2020, 5, 18)}
+                new Project {Name = "Test Project 1", From = new System.DateTime(2020, 2, 18), Till = new System.DateTime(2020, 5, 18)}
             };
 
             foreach (var item in proj)

@@ -80,6 +80,10 @@
     <Compile Include="Migrations\202003051348150_AddedProject.designer.cs">
       <DependentUpon>202003051348150_AddedProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003060701053_ProjectModelChanged.cs" />
+    <Compile Include="Migrations\202003060701053_ProjectModelChanged.designer.cs">
+      <DependentUpon>202003060701053_ProjectModelChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DeveloperRepository.cs" />
@@ -110,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003051348150_AddedProject.resx">
       <DependentUpon>202003051348150_AddedProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003060701053_ProjectModelChanged.resx">
+      <DependentUpon>202003060701053_ProjectModelChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

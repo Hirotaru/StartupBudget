@@ -1,0 +1,9 @@
+﻿@using StartupBudget.Web.ViewModels.Project
+@model ProjectNotFoundViewModel
+
+<hgroup>
+    <h2>Error.</h2>
+    <h3>Project with id = @Model.Id  was not found</h3>
+</hgroup>
+@Html.ActionLink("Back to List", "Projects")
+

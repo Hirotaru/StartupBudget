@@ -22,6 +22,8 @@ namespace StartupBudget.DAL.EF
 
             modelBuilder.Entity<Project>().HasKey(p => p.Id);
             modelBuilder.Entity<Project>().Property(p => p.Name).HasMaxLength(255);
+            modelBuilder.Entity<Project>().Property(p => p.From).HasColumnType("date");
+            modelBuilder.Entity<Project>().Property(p => p.Till).HasColumnType("date");
 
             base.OnModelCreating(modelBuilder);
         }

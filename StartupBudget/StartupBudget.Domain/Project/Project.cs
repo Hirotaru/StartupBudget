@@ -14,6 +14,6 @@ namespace StartupBudget.Domain.Project
 
         public DateTime From { get; set; }
 
-        public DateTime To { get; set; }
+        public DateTime Till { get; set; }
     }
 }
