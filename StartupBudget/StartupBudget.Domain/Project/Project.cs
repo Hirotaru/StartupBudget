@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StartupBudget.Domain.Project
 {
@@ -15,5 +12,12 @@ namespace StartupBudget.Domain.Project
         public DateTime From { get; set; }
 
         public DateTime Till { get; set; }
+
+        public List<Developer.Developer> Developers { get; set; }
+
+        public Project()
+        {
+            Developers = new List<Developer.Developer>();
+        }
     }
 }

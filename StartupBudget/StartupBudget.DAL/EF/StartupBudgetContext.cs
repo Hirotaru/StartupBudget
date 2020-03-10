@@ -25,6 +25,16 @@ namespace StartupBudget.DAL.EF
             modelBuilder.Entity<Project>().Property(p => p.From).HasColumnType("date");
             modelBuilder.Entity<Project>().Property(p => p.Till).HasColumnType("date");
 
+            modelBuilder.Entity<Project>()
+                .HasMany(p => p.Developers)
+                .WithMany(d => d.Projects)
+                .Map(pd =>
+                    {
+                        pd.ToTable("Project_Developer");
+                        pd.MapLeftKey("ProjectId");
+                        pd.MapRightKey("DeveloperId");
+                    });
+
             base.OnModelCreating(modelBuilder);
         }
     }
