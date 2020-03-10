@@ -13,6 +13,7 @@ namespace StartupBudget.Web.Automapper
         public ProjectProfile()
         {
             CreateMap<Project, SimpleProjectViewModel>();
+
             CreateMap<Project, DetailedProjectViewModel>().ReverseMap();
         }
     }

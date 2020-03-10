@@ -16,6 +16,7 @@ namespace StartupBudget.Web.Extensions
             {
                 cfg.AddProfile(new DeveloperProfile());
                 cfg.AddProfile(new ProjectProfile());
+                cfg.AddProfile(new ProjectDeveloperProfile());
             });
 
             var mapper = mapperConfiguration.CreateMapper();

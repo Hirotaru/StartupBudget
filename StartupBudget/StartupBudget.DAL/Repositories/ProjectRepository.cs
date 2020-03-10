@@ -1,4 +1,5 @@
 ﻿using StartupBudget.DAL.EF;
+using StartupBudget.Domain.Developer;
 using StartupBudget.Domain.Project;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,11 @@ namespace StartupBudget.DAL.Repositories
         public Task<List<Project>> GetAllProjects()
         {
             return context.Projects.ToListAsync();
+        }
+
+        public Task<List<Project>> GetAllProjectsWithDevelopers()
+        {
+            return context.Projects.Include(p => p.Developers).ToListAsync();
         }
 
         public Task<Project> GetProjectById(int id)

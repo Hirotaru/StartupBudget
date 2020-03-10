@@ -66,7 +66,7 @@ namespace StartupBudget.Web.Controllers
         [ActionName("Id")]
         public async Task<ActionResult> Details(int id)
         {
-            var viewModel = await service.GetDetailedProjectById(id);
+            var viewModel = await service.GetDetailsProjectDeveloperById(id);
 
             if (viewModel == null)
             {

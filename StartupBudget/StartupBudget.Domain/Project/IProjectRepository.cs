@@ -12,6 +12,8 @@ namespace StartupBudget.Domain.Project
 
         Task<List<Project>> GetAllProjects();
 
+        Task<List<Project>> GetAllProjectsWithDevelopers();
+
         Task DeleteProject(Project proj);
 
         Task<Project> GetProjectById(int id);

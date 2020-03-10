@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Autofac\WebModule.cs" />
     <Compile Include="Automapper\DeveloperProfile.cs" />
+    <Compile Include="Automapper\ProjectDeveloperProfile.cs" />
     <Compile Include="Automapper\ProjectProfile.cs" />
     <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="ViewModels\Developer\DetailedDeveloperViewModel.cs" />
     <Compile Include="ViewModels\Developer\DeveloperNotFoundViewModel.cs" />
     <Compile Include="ViewModels\Developer\SimpleDeveloperViewModel.cs" />
+    <Compile Include="ViewModels\ProjectDeveloper\DetailsProjectDeveloperViewModel.cs" />
     <Compile Include="ViewModels\Project\DetailedProjectViewModel.cs" />
     <Compile Include="ViewModels\Project\ProjectNotFoundViewModel.cs" />
     <Compile Include="ViewModels\Project\SimpleProjectViewModel.cs" />
@@ -232,6 +234,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

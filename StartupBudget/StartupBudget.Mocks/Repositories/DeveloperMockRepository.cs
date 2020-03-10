@@ -82,5 +82,10 @@ namespace StartupBudget.Mocks.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<Developer>> GetAllDevelopersWithProjects()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

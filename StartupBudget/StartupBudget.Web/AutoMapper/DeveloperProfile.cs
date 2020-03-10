@@ -10,6 +10,7 @@ namespace StartupBudget.Web.Automapper
         {
             CreateMap<Developer, SimpleDeveloperViewModel>()
                 .ForMember(vm => vm.FullName, opt => opt.MapFrom(m => m.FirstName + " " + m.LastName));
+
             CreateMap<Developer, DetailedDeveloperViewModel>().ReverseMap();
         }
     }

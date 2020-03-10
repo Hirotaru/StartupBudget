@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using System.Web;
 using AutoMapper;
 using StartupBudget.Domain.Project;
+using StartupBudget.Web.ViewModels.Developer;
 using StartupBudget.Web.ViewModels.Project;
+using StartupBudget.Web.ViewModels.ProjectDeveloper;
 
 namespace StartupBudget.Web.WorkServices
 {
@@ -92,7 +94,28 @@ namespace StartupBudget.Web.WorkServices
                 return null;
             }
 
-            return mapper.Map<DetailedProjectViewModel>(model);
+            var viewModel = mapper.Map<DetailedProjectViewModel>(model);
+
+            return viewModel;
+        }
+
+        public async Task<DetailsProjectDeveloperViewModel> GetDetailsProjectDeveloperById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var model = await repository.GetProjectById(id);
+
+            if (model == null)
+            {
+                return null;
+            }
+
+            var viewModel = mapper.Map<DetailsProjectDeveloperViewModel>(model);
+
+            return viewModel;
         }
 
         private void ProcessCheckOnDetailedViewModel(DetailedProjectViewModel viewModel)

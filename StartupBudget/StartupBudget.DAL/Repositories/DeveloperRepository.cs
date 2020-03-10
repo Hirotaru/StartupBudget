@@ -34,19 +34,14 @@ namespace StartupBudget.DAL.Repositories
             return context.Developers.ToListAsync();
         }
 
+        public Task<List<Developer>> GetAllDevelopersWithProjects()
+        {
+            return context.Developers.Include(d => d.Projects).ToListAsync();
+        }
+
         public Task<Developer> GetDeveloperById(int id)
         {
             return context.Developers.Where(d => d.Id == id).FirstOrDefaultAsync();
-        }
-
-        public Task<List<Developer>> GetDevelopersInProject(Project proj)
-        {
-            return context.Developers.Where(d => d.Projects.Contains(proj)).Include(d => d.Projects).ToListAsync();
-        }
-
-        public Task<List<Developer>> GetDevelopersNotInProject(Project proj)
-        {
-            return context.Developers.Where(d => !d.Projects.Contains(proj)).Include(d => d.Projects).ToListAsync();
         }
 
         public Task SaveDeveloper(Developer dev)

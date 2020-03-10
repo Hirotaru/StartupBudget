@@ -20,7 +20,5 @@ namespace StartupBudget.Web.ViewModels.Developer
         public decimal WeekRate { get; set; }
 
         public DeveloperQualification Qualification { get; set; }
-
-        public List<DetailedDeveloperViewModel> Projects { get; set; }
     }
 }
