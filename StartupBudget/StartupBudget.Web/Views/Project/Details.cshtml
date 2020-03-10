@@ -10,15 +10,15 @@
     <hr />
     <table class="table">
         <tr>
-            <th>
+            <th class="smallbox">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
 
-            <th>
+            <th class="smallbox">
                 @Html.DisplayNameFor(model => model.From)
             </th>
 
-            <th>
+            <th class="smallbox">
                 @Html.DisplayNameFor(model => model.Till)
             </th>
 
@@ -39,6 +39,9 @@
         </tr>
 </table>
 </div>
+
+@Html.Partial("Partial/DevList", Model.Developers)
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to Projects", "Projects")

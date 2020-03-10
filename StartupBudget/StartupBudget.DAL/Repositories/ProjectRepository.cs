@@ -37,7 +37,7 @@ namespace StartupBudget.DAL.Repositories
 
         public Task<Project> GetProjectById(int id)
         {
-            return context.Projects.Where(p => p.Id == id).FirstOrDefaultAsync();
+            return context.Projects.Where(p => p.Id == id).Include(p => p.Developers).FirstOrDefaultAsync();
         }
 
         public Task SaveProject(Project proj)
