@@ -27,14 +27,18 @@ namespace StartupBudget.Web.WorkServices
 
         public Task CreateDeveloper(DetailedDeveloperViewModel viewModel)
         {
-            Developer model = ProcessDetailedViewModel(viewModel);
+            ProcessDetailedViewModel(viewModel);
+
+            Developer model = mapper.Map<Developer>(viewModel);
 
             return repository.SaveDeveloper(model);
         }
 
         public Task UpdateDeveloper(DetailedDeveloperViewModel viewModel)
         {
-            Developer model = ProcessDetailedViewModel(viewModel);
+            ProcessDetailedViewModel(viewModel);
+
+            Developer model = mapper.Map<Developer>(viewModel);
 
             return repository.UpdateDeveloper(model);
         }
@@ -90,7 +94,7 @@ namespace StartupBudget.Web.WorkServices
             return mapper.Map<SimpleDeveloperViewModel>(model);
         }
 
-        private Developer ProcessDetailedViewModel(DetailedDeveloperViewModel viewModel)
+        private void ProcessDetailedViewModel(DetailedDeveloperViewModel viewModel)
         {
             if (viewModel == null)
             {
@@ -111,8 +115,6 @@ namespace StartupBudget.Web.WorkServices
             {
                 throw new ArgumentException(nameof(viewModel.WeekRate));
             }
-
-            return mapper.Map<Developer>(viewModel);
         }
     }
 }

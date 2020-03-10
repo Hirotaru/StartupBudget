@@ -28,14 +28,18 @@ namespace StartupBudget.Web.WorkServices
 
         public Task CreateProject(DetailedProjectViewModel viewModel)
         {
-            Project model = ProcessCheckOnDetailedViewModel(viewModel);
+            ProcessCheckOnDetailedViewModel(viewModel);
+
+            Project model = mapper.Map<Project>(viewModel);
 
             return repository.SaveProject(model);
         }
 
         public Task UpdateProject(DetailedProjectViewModel viewModel)
         {
-            Project model = ProcessCheckOnDetailedViewModel(viewModel);
+            ProcessCheckOnDetailedViewModel(viewModel);
+
+            Project model = mapper.Map<Project>(viewModel);
 
             return repository.UpdateProject(model);
         }
@@ -91,7 +95,7 @@ namespace StartupBudget.Web.WorkServices
             return mapper.Map<DetailedProjectViewModel>(model);
         }
 
-        private Project ProcessCheckOnDetailedViewModel(DetailedProjectViewModel viewModel)
+        private void ProcessCheckOnDetailedViewModel(DetailedProjectViewModel viewModel)
         {
             if (viewModel == null)
             {
@@ -117,8 +121,6 @@ namespace StartupBudget.Web.WorkServices
             {
                 throw new ArgumentException(nameof(viewModel.From) + " cannot be later than " + nameof(viewModel.Till));
             }
-
-            return mapper.Map<Project>(viewModel);
         }
     }
 }
