@@ -276,6 +276,7 @@
     <Content Include="Views\Project\ProjectNotFound.cshtml" />
     <Content Include="Views\Project\Delete.cshtml" />
     <Content Include="Views\Project\Partial\DevList.cshtml" />
+    <Content Include="Views\Developer\Partial\ProjList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

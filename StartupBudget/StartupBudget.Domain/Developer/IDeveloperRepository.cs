@@ -16,5 +16,9 @@ namespace StartupBudget.Domain.Developer
         Task<Developer> GetDeveloperById(int id);
 
         Task UpdateDeveloper(Developer dev);
+
+        Task<List<Developer>> GetDevelopersInProject(Project.Project proj);
+
+        Task<List<Developer>> GetDevelopersNotInProject(Project.Project proj);
     }
 }

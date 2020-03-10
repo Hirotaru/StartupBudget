@@ -1,4 +1,5 @@
 ﻿using StartupBudget.Domain.Developer;
+using StartupBudget.Domain.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,16 @@ namespace StartupBudget.Mocks.Repositories
             await Task.Delay(500);
 
             DataSource[index] = dev;
+        }
+
+        public Task<List<Developer>> GetDevelopersInProject(Project proj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Developer>> GetDevelopersNotInProject(Project proj)
+        {
+            throw new NotImplementedException();
         }
     }
 }
