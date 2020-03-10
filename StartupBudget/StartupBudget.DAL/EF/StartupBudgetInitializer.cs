@@ -20,10 +20,14 @@ namespace StartupBudget.DAL.EF
                 context.Developers.Add(item);
             }
 
+            context.SaveChanges();
+
             var proj = new List<Project>
             {
                 new Project {Name = "Test Project 1", From = new System.DateTime(2020, 2, 18), Till = new System.DateTime(2020, 5, 18)}
             };
+
+            proj[0].Developers.Add(devs[0]);
 
             foreach (var item in proj)
             {
@@ -31,8 +35,6 @@ namespace StartupBudget.DAL.EF
             }
 
             context.SaveChanges();
-
-            
         }
     }
 }
